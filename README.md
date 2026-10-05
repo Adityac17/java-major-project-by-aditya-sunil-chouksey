@@ -22,21 +22,14 @@ A robust, multi-threaded desktop application designed for a restaurant front-des
 
 ---
 
-## Documentation Suite
+## Documentation & Presentation
 
-All detailed guides, academic reports, viva preparation questions, and presentation decks are organized in the [`documentation/`](./documentation/) folder:
+All core documentation and the presentation deck are organized in the [`documentation/`](./documentation/) folder:
 
 | Document | Description |
 |---|---|
-| [**Documentation Hub**](./documentation/README.md) | Central index of all project guides, specifications, and architecture maps. |
-| [**Architecture & Design Guide**](./documentation/ARCHITECTURE_AND_DESIGN.md) | In-depth analysis of OOP principles, collections complexity ($O(1)$ vs $O(\log N)$), threading, and persistence. |
-| [**Setup & Execution Guide**](./documentation/SETUP_AND_RUN.md) | Step-by-step setup for macOS, Linux, Windows, and IDEs (IntelliJ, Eclipse, VS Code). |
-| [**Viva Questions & Model Answers**](./documentation/VIVA_QUESTIONS.md) | 82 comprehensive viva questions with concise model answers. |
-| [**Live Demonstration Script**](./documentation/DEMO_SCRIPT.md) | 3-minute and 10-minute rehearsed live demo scripts with verbal transitions. |
-| [**Project Report (Word)**](./documentation/Project_Report.docx) | Formal academic case-study report following university formatting guidelines. |
-| [**Presentation Slides (PPTX)**](./documentation/Presentation_Slides.pptx) | Official 9-slide deck with comprehensive speaker notes. |
-| [**UML & Flowcharts**](./documentation/uml/) | High-resolution class diagrams, architecture schematics, and workflow diagrams. |
-| [**GUI Screenshots**](./documentation/screenshots/) | High-definition screenshots across all four functional tabs. |
+| [**Documentation Hub**](./documentation/README.md) | Technical documentation, architecture overview, collections complexity analysis, and concurrency design. |
+| [**Presentation Slides (PPTX)**](./documentation/Presentation_Slides.pptx) | Official 9-slide deck with comprehensive speaker notes for viva and project evaluation. |
 
 ---
 
@@ -69,16 +62,9 @@ On first launch, sample data is automatically populated (12 tables, advance book
 
 ```
 .
-├── documentation/                    Complete documentation, guides, UML & reports
-│   ├── README.md                     Documentation index
-│   ├── ARCHITECTURE_AND_DESIGN.md    Architectural specification
-│   ├── SETUP_AND_RUN.md              Setup & troubleshooting manual
-│   ├── VIVA_QUESTIONS.md             82 Viva questions & model answers
-│   ├── DEMO_SCRIPT.md                Demo walkthrough script
-│   ├── Project_Report.docx           University case study report
-│   ├── Presentation_Slides.pptx      9-slide presentation deck
-│   ├── uml/                          Architecture & class diagrams (SVG + PNG)
-│   └── screenshots/                  Application UI captures
+├── documentation/                    Project documentation and presentation
+│   ├── README.md                     Comprehensive documentation & technical guide
+│   └── Presentation_Slides.pptx      Official 9-slide presentation deck (with notes)
 ├── src/                              Java source code
 │   └── com/restaurant/
 │       ├── Main.java                 Application bootstrap & monitor daemon starter

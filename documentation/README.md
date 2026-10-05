@@ -1,5 +1,5 @@
 # Restaurant Table Reservation & Waitlist System
-## Documentation Hub
+## Project Documentation & Presentation
 
 **Student:** Aditya Sunil Chouksey (Roll: `150096725070`)  
 **Programme:** B.Tech CSE (2025-29), Semester III  
@@ -9,92 +9,61 @@
 
 ---
 
-## Overview
+## 1. Documentation Overview
 
-This directory contains the complete technical documentation, design specifications, setup guides, viva preparation material, and demonstration scripts for the **Restaurant Table Reservation & Waitlist System**.
-
-The application is a standalone desktop system built strictly with standard Java (JDK 8+, no external third-party dependencies) using Java Swing for the graphical interface and standard JDK concurrency, collections, and I/O for business operations.
+This folder contains the core presentation and technical documentation for the **Restaurant Table Reservation & Waitlist System**.
 
 ```
 documentation/
-├── README.md                          This documentation index
-├── ARCHITECTURE_AND_DESIGN.md         Detailed system design, OOP principles, collections & threads
-├── SETUP_AND_RUN.md                   Prerequisites, build scripts, IDE setup & troubleshooting
-├── VIVA_QUESTIONS.md                  Comprehensive Q&A bank for viva evaluation
-├── DEMO_SCRIPT.md                     Step-by-step 3-minute and 10-minute live demonstration script
-├── Project_Report.docx                Formal university case study project report
-├── Setup_and_Run_Guide.pdf            Formatted PDF guide for setup and verification
-├── Concepts_and_Study_Guide_Java.pdf  Study guide connecting code to Java syllabus concepts
-├── Viva_Questions_and_Answers.pdf     Formatted PDF of viva questions and answers
-├── Live_Demo_Script.pdf               Formatted live demo script
-├── Presentation_Guide.pdf             Slide-by-slide rehearsal guide and cue cards
-├── Presentation_Slides.pptx           Official 9-slide presentation deck with speaker notes
-├── uml/                               UML class diagrams and workflow diagrams (SVG & PNG)
-│   ├── architecture.png               System architecture diagram
-│   ├── class-diagram.svg              Full UML class diagram
-│   ├── flowchart-booking.png          Reservation booking workflow
-│   └── flowchart-waitlist-notification.png Table release & waitlist notification flow
-└── screenshots/                       High-resolution UI screenshots of all tabs
-    ├── floor-and-tables.png           Floor plan and live table status
-    ├── reservations.png               Booking management, search and filters
-    ├── waitlist.png                   Waitlist queue and walk-in arrivals
-    └── reports.png                    Analytics, utilization and seating reports
+├── README.md                 Comprehensive technical documentation and viva guide
+└── Presentation_Slides.pptx  Official 9-slide presentation deck (with full speaker notes)
 ```
 
 ---
 
-## Documentation Index
+## 2. Presentation Deck
 
-### 1. [Architecture & Design Guide](./ARCHITECTURE_AND_DESIGN.md)
-Deep dive into:
-- Layered architectural design (Model, Service, Persistence, GUI, Exception, Util)
-- Core OOP principles (Encapsulation, Inheritance, Polymorphism, Abstraction)
-- Strategic selection and complexity analysis of Collections (`ArrayList`, `LinkedList`, `HashMap`, `TreeMap`)
-- Multithreading architecture (`ReservationMonitor` daemon thread and `WaitlistNotifier` asynchronous paging worker)
-- Thread synchronization and race-condition prevention across shared state
-- Fault-tolerant atomic persistence design (`.tmp` -> `.dat` replacement)
+The official project presentation is available in this folder:
+- **Slide Deck:** [`Presentation_Slides.pptx`](./Presentation_Slides.pptx)
 
-### 2. [Setup & Run Guide](./SETUP_AND_RUN.md)
-Comprehensive environment and execution manual:
-- System prerequisites (JDK 8 or newer)
-- Running via CLI with automated compile & run scripts:
-  - macOS / Linux: `./run.sh`
-  - Windows: `run.bat`
-- IDE import instructions for IntelliJ IDEA, Eclipse, and Visual Studio Code
-- Verification test cases and troubleshooting common environment issues
-
-### 3. [Viva Questions & Model Answers](./VIVA_QUESTIONS.md)
-Structured question bank for practical exams and viva:
-- General project & design questions
-- Classes, objects, constructors, and enums
-- Collections framework & algorithmic choices
-- Threads, concurrency, and Swing Event Dispatch Thread (EDT)
-- Persistence, file I/O, and crash resilience
-- Exception handling and strict input validation
-
-### 4. [Live Demo Script](./DEMO_SCRIPT.md)
-Rehearsed walkthrough for evaluation:
-- **3-Minute Quick Demo**: Floor plan visualization, table turnover, automatic waitlist paging, booking validation error demonstration, and reports generation.
-- **10-Minute Comprehensive Demo**: Full end-to-end operational flow with edge cases (late arrival notification, dining window protection, table release and auto-hold).
+### Slide Contents & Structure:
+1. **Title & Student Credentials:** Project name, author details, course, and case study number.
+2. **Problem Statement & Objectives:** Host pain points, table turnover, waitlist fairness, and automated allocation.
+3. **System Architecture:** Layered design separating GUI, Service, Model, Persistence, and Util layers.
+4. **Core OOP & Collections:** Practical usage of `ArrayList`, `LinkedList`, `HashMap`, and `TreeMap`.
+5. **Multithreading & Concurrency:** Background sweep daemon (`ReservationMonitor`) and asynchronous paging (`WaitlistNotifier`).
+6. **Key Modules & UI Walkthrough:** Floor plan, reservation manager, waitlist queue, and seating reports.
+7. **Business Rules & Seating Fairness:** 90-minute dining window, best-fit assignment, and 30-minute advance table holding.
+8. **Crash-Resilient Persistence:** Atomic file replacement (`.tmp` -> `.dat`) and daily state rollover.
+9. **Conclusion & Viva Highlights:** Summary of technical achievements and evaluation takeaways.
 
 ---
 
-## Key Modules & Responsibilities
+## 3. System Architecture & Technical Highlights
 
-| Module | Description | Primary Classes |
-|---|---|---|
-| **Floor & Table Setup** | Floor layout, table capacity, section assignment, live table status (Available, Reserved, Occupied) | `Table`, `Section`, `TableStatus`, `TablesPanel` |
-| **Reservation Booking** | Scheduling, customer tracking, automated best-fit table assignment, 90-minute conflict prevention | `Reservation`, `Customer`, `ReservationStatus`, `ReservationsPanel` |
-| **Waitlist Management** | Walk-in registration, FIFO queue ordering, estimated wait calculation, manual seating/removal | `Waitlist`, `WaitlistEntry`, `WaitlistPanel` |
-| **Availability Notification** | 30-min booking alert, 15-min late mark, auto-paging waitlisted guests when tables free up | `ReservationMonitor`, `WaitlistNotifier`, `RestaurantListener` |
-| **Search & Filtering** | Instant search by customer name, phone, table number, or reservation ID, with dynamic sort | `RestaurantManager`, `ReservationsPanel` |
-| **Seating Analytics** | Real-time seat utilization, section breakdowns, covers, peak dining hours, waitlist metrics | `ReportGenerator`, `ReportsPanel` |
-| **Persistence Engine** | Atomic serialized snapshots, crash recovery, daily rollover of unfulfilled bookings | `DataStore`, `RestaurantSnapshot` |
+### A. Layered Architecture
+- **GUI Layer (`com.restaurant.gui`):** Swing components (`MainFrame`, `TablesPanel`, `ReservationsPanel`, `WaitlistPanel`, `ReportsPanel`). Fully decoupled from business logic; dispatches updates safely via the Event Dispatch Thread (EDT).
+- **Service Layer (`com.restaurant.service`):** `RestaurantManager` controls domain rules and coordinates threads. All mutation methods are `synchronized` to eliminate race conditions.
+- **Model Layer (`com.restaurant.model`):** Domain entities (`Table`, `Reservation`, `Customer`, `Waitlist`, `WaitlistEntry`) and type-safe enums (`TableStatus`, `ReservationStatus`, `Section`, `NotificationType`).
+- **Persistence Layer (`com.restaurant.persistence`):** `DataStore` manages atomic Java object serialization to prevent data corruption during unexpected halts.
+- **Util & Exception Layers:** `Validator` enforces strict boundaries (1-20 party sizes, 15-minute slot alignment, valid calendar dates) and throws checked exceptions under `RestaurantException`.
+
+### B. Collections Complexity & Justifications
+- **`ArrayList<Table>` & `ArrayList<Reservation>`:** Efficient index-based rendering for floor layouts and complete historical audit logs.
+- **`HashMap<String, Reservation>`:** Provides $O(1)$ average time complexity for instant lookups by reservation ID.
+- **`TreeMap<LocalDateTime, List<Reservation>>`:** Self-balancing Red-Black Tree providing $O(\log N)$ time-range queries (`subMap` for bookings due within 30 minutes, `tailMap` for subsequent bookings).
+- **`LinkedList<WaitlistEntry>`:** Fair FIFO waitlist queue enabling $O(1)$ enqueuing at tail, $O(1)$ dequeuing from head, and safe iterator removals without array reallocations.
+
+### C. Concurrency Model
+1. **`ReservationMonitor` (Daemon Thread):** Sweeps active reservations every 15 seconds, automatically holding tables 30 minutes before arrival and flagging no-shows after 15 minutes.
+2. **`WaitlistNotifier` (Worker Thread):** Spawns asynchronously upon table release, simulating a 2-second cleaning/bussing delay before paging the earliest fitting guest on the waitlist.
+3. **Thread Safety:** Coordinated through synchronized methods in `RestaurantManager` and non-blocking EDT delegation via `SwingUtilities.invokeLater()`.
 
 ---
 
-## Formal Documents
+## 4. Quick Execution Guide
 
-- **Case Study Report:** `Project_Report.docx` - Complete academic report following university formatting standards.
-- **Presentation Deck:** `Presentation_Slides.pptx` - 9-slide presentation deck with comprehensive speaker notes.
-- **Slide Guide:** `Presentation_Guide.pdf` - Slide-by-slide delivery plan, timing recommendations, and cue cards.
+From the root project directory:
+- **macOS / Linux:** `./run.sh`
+- **Windows:** `run.bat`
+- **IDE:** Open project root, set `src` as Sources Root, and run `com.restaurant.Main`.

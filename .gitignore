@@ -1,0 +1,38 @@
+# Compiled Java bytecode
+out/
+bin/
+*.class
+
+# macOS system files
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon\r
+._*
+.Spotlight-V100
+.Trashes
+
+# Windows system files
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# IDE & Editor files
+.idea/
+*.iml
+.vscode/
+.settings/
+.project
+.classpath
+*.sublime-project
+*.sublime-workspace
+
+# Runtime data & temp files
+data/*.dat*
+!data/.gitkeep
+*.log
+*.tmp
+
+# Temporary build caches
+documentation/_build/_render/
+documentation/_build/node_modules/
